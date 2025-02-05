@@ -21,6 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let orderList = document.getElementById('orderList');
         let listItem = document.createElement('li');
+        listItem.dataset.name = name;
+        listItem.dataset.clothingType = clothingType;
+        listItem.dataset.size = size;
+        listItem.dataset.color = color;
+        listItem.dataset.quantity = quantity;
+        listItem.dataset.price = price;
+        listItem.dataset.total = total;
         listItem.textContent = `${name} - ${clothingType}, Rozmiar: ${size}, Kolor: ${color}, Ilość: ${quantity}, Cena: ${price} zł (Suma: ${total} zł)`;
         orderList.appendChild(listItem);
 
@@ -88,16 +95,13 @@ document.addEventListener("DOMContentLoaded", function () {
             y += 12;
 
             orders.forEach(order => {
-                let text = order.textContent.split(" - ");
-                let name = text[0].trim();
-                let details = text[1].split(", ");
-
-                let clothingType = details[0].trim();
-                let size = details[1].split(": ")[1].trim();
-                let color = details[2].split(": ")[1].trim();
-                let quantity = details[3].split(": ")[1].trim();
-                let price = details[4].split(": ")[1].trim();
-                let total = details[5].split(": ")[1].trim();
+                let name = order.dataset.name || "Nieznane";
+                let clothingType = order.dataset.clothingType || "Nieznane";
+                let size = order.dataset.size || "Nieznane";
+                let color = order.dataset.color || "Nieznane";
+                let quantity = order.dataset.quantity || "0";
+                let price = order.dataset.price || "0";
+                let total = order.dataset.total || "0";
 
                 x = 10;
 
