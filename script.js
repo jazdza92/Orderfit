@@ -15,10 +15,7 @@ document.getElementById('orderForm').addEventListener('submit', function(event) 
     let total = quantity * price;
 
     let listItem = document.createElement('li');
-    listItem.innerHTML = `<strong>${name} ${surname}</strong><br> 
-                          <em>${clothingType}</em>, Rozmiar: <strong>${size}</strong>, 
-                          Kolor: <strong>${color}</strong>, Ilość: <strong>${quantity}</strong>, 
-                          Cena: <strong>${price} zł</strong> (Suma: <strong>${total} zł</strong>)`;
+    listItem.innerHTML = `<strong>${name} ${surname}</strong> - ${clothingType}, Rozmiar: ${size}, Kolor: ${color}, Ilość: ${quantity}, Cena: ${price} zł (Suma: ${total} zł)`;
 
     orderList.appendChild(listItem);
 
@@ -50,6 +47,11 @@ document.getElementById('clothingType').addEventListener('change', function() {
 });
 
 document.getElementById('exportPDF').addEventListener('click', function() {
+    if (typeof window.jspdf === "undefined") {
+        alert("Błąd: jsPDF nie został poprawnie załadowany.");
+        return;
+    }
+
     const { jsPDF } = window.jspdf;
     let doc = new jsPDF();
     doc.setFont('helvetica', 'bold');
@@ -58,7 +60,7 @@ document.getElementById('exportPDF').addEventListener('click', function() {
     let orders = document.querySelectorAll("#orderList li");
     let y = 40;
     orders.forEach(order => {
-        doc.text(order.innerText, 20, y);
+        doc.text(order.textContent, 20, y);
         y += 10;
     });
 
