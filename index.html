@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderFit</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>OrderFit - Zamówienia</h1>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="Imię" required list="nameList">
+            <input type="text" id="surname" placeholder="Nazwisko" required list="surnameList">
+            <datalist id="nameList"></datalist>
+            <datalist id="surnameList"></datalist>
+
+            <select id="clothingType" required>
+                <option value="">Wybierz rodzaj odzieży</option>
+                <option value="T-shirt">T-shirt</option>
+                <option value="Polar">Polar</option>
+                <option value="Sweter">Sweter</option>
+                <option value="Kurtka">Kurtka</option>
+            </select>
+
+            <select id="size" required>
+                <option value="">Wybierz rozmiar</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="XXXL">XXXL</option>
+            </select>
+
+            <select id="color" required>
+                <option value="">Wybierz kolor</option>
+            </select>
+
+            <input type="number" id="quantity" placeholder="Ilość" required>
+            <input type="number" id="price" placeholder="Cena" required>
+            <input type="file" id="imageUpload" accept="image/*">
+
+            <button type="submit">Dodaj zamówienie</button>
+        </form>
+        
+        <h2>Lista zamówień</h2>
+        <ul id="orderList"></ul>
+        <h3>Suma: <span id="totalCost">0</span> zł</h3>
+        <button id="exportPDF">Eksportuj do PDF</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
