@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let color = document.getElementById('color').value.trim();
         let quantity = parseInt(document.getElementById('quantity').value);
         let price = parseFloat(document.getElementById('price').value);
-        
+
         if (!name || !clothingType || !size || !color || !quantity || !price) {
             alert("Wszystkie pola muszą być wypełnione!");
             return;
@@ -165,16 +165,4 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Wystąpił błąd: " + error.message);
         }
     });
-
-    console.log("Ładowanie jsPDF...");
-    let script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
-    script.onload = function() {
-        console.log("jsPDF załadowany poprawnie.");
-    };
-    script.onerror = function() {
-        console.error("Błąd: Nie udało się załadować jsPDF.");
-        alert("Błąd: Nie udało się załadować jsPDF. Sprawdź połączenie internetowe.");
-    };
-    document.body.appendChild(script);
 });
