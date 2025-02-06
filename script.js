@@ -1,6 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Skrypt załadowany poprawnie.");
 
+    // Obsługa wyboru koloru
+    document.getElementById('clothingType').addEventListener('change', function() {
+        let colorSelect = document.getElementById('color');
+        colorSelect.innerHTML = '<option value="">Wybierz kolor</option>';
+
+        let colors = {
+            "Polar": ["Czarny", "Granatowy"],
+            "T-shirt": ["Czarny", "Czerwony", "Granatowy", "Biały"],
+            "Sweter": ["Granatowy", "Czarny"],
+            "Kurtka": ["Czarny", "Granatowy", "Czerwony"]
+        };
+
+        let selectedType = this.value;
+        if (colors[selectedType]) {
+            colors[selectedType].forEach(color => {
+                let option = document.createElement('option');
+                option.value = color;
+                option.textContent = color;
+                colorSelect.appendChild(option);
+            });
+        }
+    });
+
+    // Eksport do PDF
     document.getElementById('exportPDF').addEventListener('click', function() {
         console.log("Przycisk eksportu PDF został kliknięty.");
 
