@@ -14,5 +14,32 @@ function addOrder() {
 }
 
 function exportToPDF() {
-    alert('Funkcja eksportu do PDF będzie dostępna w kolejnej wersji!');
+    const rows = document.querySelectorAll("#ordersTable tbody tr");
+    let orders = [];
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        orders.push({
+            name: cells[0].textContent,
+            clothingType: cells[1].textContent,
+            size: cells[2].textContent,
+            color: cells[3].textContent,
+            quantity: cells[4].textContent,
+            price: cells[5].textContent,
+            totalPrice: cells[6].textContent
+        });
+    });
+
+    fetch('/generate_pdf', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orders })
+    })
+    .then(response => response.blob())
+    .then(blob => {
+        let link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "zamowienia.pdf";
+        link.click();
+    });
 }
